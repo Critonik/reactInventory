@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Layout from './components/Layout/Layout';
+import { StoreProvider } from './store/InventoryContext';
+import x from '../src/img/x.svg';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App: React.FC = () => {
+    return (
+        <StoreProvider>
+            <section className="App">
+                <Layout/>
+                <button className="close-button">
+                    <img src={x} className="cross" alt={'close'}/>
+                    <span className="close-button-text">
+                        Закрыть
+                    </span>
+                </button>
+            </section>
+        </StoreProvider>
+    );
 }
 
 export default App;

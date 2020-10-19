@@ -1,0 +1,186 @@
+@import "../../global-styles/media";
+
+.body-item {
+  width: 30.95px;
+  height: 30.95px;
+  background-color: transparent;
+  border-radius: 1.90452px;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  &[data-image='hat'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/hat.svg");
+    grid-column-start: 3;
+    grid-column-end: 3;
+  }
+  &[data-image='earrings'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/earrings.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 2;
+    grid-column-end: 2;
+  }
+  &[data-image='mask'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/eyeMask.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 3;
+    grid-column-end: 3;
+  }
+  &[data-image='glasses'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/geek.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 4;
+    grid-column-end: 4;
+  }
+  &[data-image='jacket'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/jacket.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 3;
+    grid-column-end: 3;
+  }
+  &[data-image='tie'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/tie.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 4;
+    grid-column-end: 4;
+  }
+  &[data-image='watch'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/watch.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 4;
+    grid-column-end: 4;
+  }
+  &[data-image='pants'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/pants.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 3;
+    grid-column-end: 3;
+  }
+  &[data-image='gloves'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/glove.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &[data-image='bracelet'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/bracelet.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &[data-image='parachute'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/parachute.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 2;
+    grid-column-end: 2;
+  }
+  &[data-image='shoes'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/menShoe.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 3;
+    grid-column-end: 3;
+  }
+  &[data-image='policeman'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/policeman.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 4;
+    grid-column-end: 4;
+  }
+  &[data-image='gun'] {
+    width: 93%;
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/carabinBody.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 2;
+    grid-column-end: 5;
+  }
+  &[data-image='pistol'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/pistolBody.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 2;
+    grid-column-end: 2;
+  }
+  &[data-image='knife'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/knifeIcon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 3;
+    grid-column-end: 3;
+    background-size: contain;
+  }
+  &[data-image='grenade'] {
+    background-color: rgba(121, 121, 121, 0.17);
+    background-image: url("../../img/grenadeBody.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column-start: 4;
+    grid-column-end: 4;
+    background-size: contain;
+  }
+}
+
+.contain {
+  &[data-image] {
+    background-size: contain;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .body-item {
+    width: 40.95px;
+    height: 40.95px;
+    border-radius: 2.90452px;
+    background-size: 80%;
+  }
+}
+
+@media screen and (min-width: $ultra) {
+  .body-item {
+    width: 65px;
+    height: 65px;
+    border-radius: 4px;
+    background-size: 80%;
+  }
+}
+
+@media screen and (min-width: $ultraWide) {
+  .body-item {
+    width: 75px;
+    height: 75px;
+    border-radius: 4px;
+    background-size: 80%;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: $max) {
+  .body-item {
+    width: 85px;
+    height: 85px;
+    border-radius: 5.17588px;
+  }
+}

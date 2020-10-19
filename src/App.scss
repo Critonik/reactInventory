@@ -1,0 +1,105 @@
+@import "~normalize.css/normalize.css";
+@import "global-styles/media";
+
+.App {
+  background-image: url("./img/back.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  * {
+    user-select: none;
+  }
+}
+
+.disable-class {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.close-button {
+  border: none;
+  background: rgba(121, 121, 121, 0.17);
+  border-radius: 3.04132px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+  padding: 6px 0;
+  min-width: 92px;
+  cursor: pointer;
+}
+
+.cross {
+  width: 7.5px;
+  height: 7.5px;
+  margin-right: 5px;
+}
+
+.close-button-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 6.84298px;
+  line-height: 8px;
+  text-align: center;
+  color: #FFFFFF
+}
+
+@media screen and (min-width: $desktop){
+  .close-button {
+    border-radius: 4.04132px;
+    padding: 8px 0;
+    min-width: 142px;
+  }
+
+  .cross {
+    width: 11.5px;
+    height: 11.5px;
+  }
+
+  .close-button-text {
+    font-size: 9.84298px;
+    line-height: 11px;
+  }
+}
+
+@media screen and (min-width: $ultra){
+  .close-button {
+    border-radius: 5.91736px;
+    padding: 11px 0;
+    min-width: 179px;
+  }
+
+  .cross {
+    width: 14.79px;
+    height: 14.79px;
+  }
+
+  .close-button-text {
+    font-size: 13.314px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (min-width: $ultra){
+  .close-button {
+    border-radius: 9.32476px;
+    padding: 18px 0;
+    min-width: 282px;
+  }
+
+  .cross {
+    width: 23px;
+    height: 23px;
+  }
+
+  .close-button-text {
+    font-size: 20.9807px;
+    line-height: 26px;
+  }
+}

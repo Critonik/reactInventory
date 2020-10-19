@@ -1,0 +1,56 @@
+@import "../../global-styles/media";
+@import "../../global-styles/mixin";
+
+.inventory-scroll-wrapper {
+  display: flex;
+  height: max-content;
+  flex-direction: column;
+}
+
+.inventory-scroll-wrapper-inv {
+  overflow-y: auto;
+  @include scrollstyles;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: minmax(max-content, 42px);
+  max-height: 136px;
+  margin-bottom: 7.5px;
+  grid-gap: 3.33px;
+}
+
+
+@media screen and (min-width: $desktop) {
+  .inventory-scroll-wrapper-inv {
+    grid-auto-rows: minmax(max-content, 66px);
+    max-height: 212px;
+    margin-bottom: 12.5px;
+    grid-gap: 6.33px;
+  }
+}
+
+@media screen and (min-width: $ultra) {
+  .inventory-scroll-wrapper-inv {
+    grid-auto-rows: minmax(max-content, 90px);
+    max-height: 290px;
+    margin-bottom: 16px;
+    grid-gap: 10px;
+  }
+}
+
+@media screen and (min-width: $ultraWide) {
+  .inventory-scroll-wrapper-inv {
+    grid-auto-rows: minmax(max-content, 100px);
+    max-height: 324px;
+    margin-bottom: 16px;
+    grid-gap: 11px;
+  }
+}
+
+@media screen and (min-width: $max) {
+  .inventory-scroll-wrapper-inv {
+    grid-auto-rows: minmax(max-content, 116px);
+    max-height: 367px;
+    margin-bottom: 20px;
+    grid-gap: 13px;
+  }
+}

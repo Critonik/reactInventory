@@ -1,0 +1,118 @@
+@import "../../global-styles/media";
+
+.inventory-body-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: max-content;
+}
+
+.inventory-head-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 1.4px 2.8px;
+  align-items: center;
+  background: rgba(121, 121, 121, 0.17);
+  border-radius: 1.90452px;
+  min-height: 12px;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.inventory-head-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 50%;
+  background-color: transparent;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 5.0643px;
+  line-height: 6px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.26);
+  border: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+}
+
+.active-btn {
+  background: linear-gradient(268.9deg, #27AE60 0.22%, #6FCF97 100%);
+  border-radius: 1.90452px;
+  color: #FFFFFF;
+}
+
+@media screen and (min-width: $desktop) {
+  .inventory-head-wrapper {
+    padding: 1.9px 4.8px;
+    border-radius: 2.90452px;
+    min-height: 18px;
+    margin-bottom: 9px;
+  }
+
+  .inventory-head-btn {
+    font-size: 7.0643px;
+    line-height: 9px;
+  }
+
+  .active-btn {
+    background: linear-gradient(106.98deg, #7CB7D5 1.77%, #7E84DA 37.2%, #2AD19E 73.01%);
+    border-radius: 2.90452px;
+  }
+}
+
+@media screen and (min-width: $ultra) {
+  .inventory-head-wrapper {
+    padding: 3px 6px;
+    border-radius: 4px;
+    min-height: 25px;
+    margin-bottom: 12px;
+  }
+
+  .inventory-head-btn {
+    font-size: 10.6364px;
+    line-height: 13px;
+  }
+
+  .active-btn {
+    border-radius: 4px;
+  }
+}
+
+@media screen and (min-width: $ultraWide) {
+  .inventory-head-wrapper {
+    padding: 3px 6px;
+    border-radius: 4px;
+    min-height: 29px;
+    margin-bottom: 14px;
+  }
+
+  .inventory-head-btn {
+    font-size: 11.6364px;
+    line-height: 15px;
+  }
+
+  .active-btn {
+    border-radius: 4px;
+  }
+}
+
+@media screen and (min-width: $max) {
+  .inventory-head-wrapper {
+    padding: 3.88px 7.77px;
+    border-radius: 5.17588px;
+    min-height: 32px;
+    margin-bottom: 16px;
+  }
+
+  .inventory-head-btn {
+    font-size: 13.7631px;
+    line-height: 17px;
+  }
+
+  .active-btn {
+    border-radius: 5.17588px;
+  }
+}

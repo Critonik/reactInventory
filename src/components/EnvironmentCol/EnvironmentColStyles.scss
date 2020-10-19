@@ -1,0 +1,262 @@
+@import "../../global-styles/mixin";
+@import "../../global-styles/media";
+
+.environment-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1 1 50%;
+  max-height: 177px;
+  max-width: 155px;
+  overflow-y: auto;
+}
+
+.moved-env-class {
+  .item-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .item-name,
+  .item-count {
+    opacity: 0;
+  }
+}
+
+.env-title {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 8.57035px;
+  line-height: 10px;
+  text-align: left;
+  color: #FFFFFF;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.evn-scroll-wrapper {
+  height: calc(100% - 10px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding-right: 3px;
+  @include scrollstyles;
+}
+
+.draggable-env-item {
+  display: flex;
+  width: 100%;
+  max-width: 155px;
+}
+
+
+.env-item-body {
+  width: 100%;
+  padding: 4px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(121, 121, 121, 0.17);
+  border-radius: 1.90452px;
+  margin-bottom: 6px;
+  min-height: 17px;
+  cursor: pointer;
+}
+
+.item-inner-wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1 1 50%;
+  &:last-of-type {
+    flex-basis: 30%;
+  }
+}
+
+.item-icon {
+  width: 7.5px;
+  height: 7.5px;
+  margin-right: 4px;
+}
+
+.item-name {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 5.71357px;
+  line-height: 7px;
+  color: #FFFFFF;
+}
+
+.item-count {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 4.76131px;
+  line-height: 6px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #FFFFFF;
+  display: block;
+  margin-left: auto;
+}
+
+@media screen and (min-width: $desktop){
+  .environment-body {
+    max-height: 240px;
+    max-width: 200px;
+  }
+
+  .draggable-env-item {
+    max-width: 200px;
+  }
+
+  .env-title {
+    font-size: 14px;
+    line-height: 19px;
+  }
+
+  .env-item-body {
+    padding: 6px 3px;
+    border-radius: 2.90452px;
+    margin-bottom: 9px;
+    min-height: 24px;
+  }
+
+  .item-icon {
+    width: 12.5px;
+    height: 12.5px;
+    margin-right: 5px;
+  }
+
+  .item-name {
+    font-size: 7.71357px;
+    line-height: 9px;
+  }
+
+  .item-count {
+    font-size: 6.76131px;
+    line-height: 8px;
+  }
+}
+
+@media screen and (min-width: $ultra){
+  .environment-body {
+    max-height: 372px;
+    max-width: 301px;
+  }
+
+  .draggable-env-item {
+    max-width: 301px;
+  }
+
+  .env-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .env-item-body {
+    padding: 10px 6px;
+    border-radius: 4px;
+    margin-bottom: 13px;
+    min-height: 36px;
+  }
+
+  .item-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 7px;
+  }
+
+  .item-name {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .item-count {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
+@media screen and (min-width: $ultraWide){
+  .environment-body {
+    max-height: 442px;
+    max-width: 341px;
+  }
+
+  .draggable-env-item {
+    max-width: 341px;
+  }
+
+  .env-title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .env-item-body {
+    padding: 10px 6px;
+    border-radius: 4px;
+    margin-bottom: 13px;
+    min-height: 38px;
+  }
+
+  .item-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+  }
+
+  .item-name {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .item-count {
+    font-size: 11px;
+    line-height: 14px;
+  }
+}
+
+@media screen and (min-width: $max){
+  .environment-body {
+    max-height: 481px;
+    max-width: 389px;
+  }
+
+  .draggable-env-item {
+    max-width: 389px;
+  }
+
+  .env-title {
+    font-size: 23.2915px;
+    line-height: 28px;
+  }
+
+  .env-item-body {
+    padding: 13px 8px;
+    border-radius: 5.17588px;
+    margin-bottom: 16px;
+    min-height: 46px;
+  }
+
+  .item-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 9px;
+  }
+
+  .item-name {
+    font-size: 15.5276px;
+    line-height: 19px;
+  }
+
+  .item-count {
+    font-size: 12.9397px;
+    line-height: 16px;
+  }
+}
+
