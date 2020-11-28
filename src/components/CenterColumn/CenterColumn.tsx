@@ -13,27 +13,27 @@ const CenterColumn: React.FC = () => {
             <div className="body-wrapper">
                 <BodyRow>
                     <BodyCell
-                        data={storeData.hat}
+                        data={storeData?.Hats}
                     />
                 </BodyRow>
                 <BodyRow>
                     <BodyCell
-                        data={storeData?.earrings}
+                        data={storeData?.Ears}
                     />
                     <BodyCell
-                        data={storeData?.mask}
+                        data={storeData?.Masks}
                     />
                     <BodyCell
-                        data={storeData?.glasses}
+                        data={storeData?.Glasses}
                     />
                 </BodyRow>
                 <BodyRow/>
                 <BodyRow>
                     <BodyCell
-                        data={storeData?.jacket}
+                        data={storeData?.Tops}
                     />
                     <BodyCell
-                        data={storeData.tie}
+                        data={storeData?.Accessories}
                     />
                 </BodyRow>
                 <BodyRow>
@@ -41,27 +41,27 @@ const CenterColumn: React.FC = () => {
                         data={storeData?.gloves}
                     />
                     <BodyCell
-                        data={storeData?.bracelet}
+                        data={storeData?.Bracelets}
                     />
                     <BodyCell
-                        data={storeData?.watch}
+                        data={storeData?.Watches}
                     />
                 </BodyRow>
                 <BodyRow>
                     <BodyCell
-                        data={storeData?.pants}
+                        data={storeData?.Legs}
                     />
                 </BodyRow>
                 <BodyRow/>
                 <BodyRow>
                     <BodyCell
-                        data={storeData?.parachute}
+                        data={storeData?.['Bags and Parachutes']}
                     />
                     <BodyCell
-                        data={storeData?.shoes}
+                        data={storeData?.Shoes}
                     />
                     <BodyCell
-                        data={storeData?.policeman}
+                        data={storeData?.['Body Armors']}
                     />
                 </BodyRow>
                 <BodyRow>

@@ -8,63 +8,63 @@
   background-size: 80%;
   background-repeat: no-repeat;
   background-position: center;
-  &[data-image='hat'] {
+  &[data-image='Hats'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/hat.svg");
+    background-image: url("../../img/Hats.svg");
     grid-column-start: 3;
     grid-column-end: 3;
   }
-  &[data-image='earrings'] {
+  &[data-image='Ears'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/earrings.svg");
+    background-image: url("../../img/Ears.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 2;
     grid-column-end: 2;
   }
-  &[data-image='mask'] {
+  &[data-image='Masks'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/eyeMask.svg");
+    background-image: url("../../img/Masks.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 3;
     grid-column-end: 3;
   }
-  &[data-image='glasses'] {
+  &[data-image='Glasses'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/geek.svg");
+    background-image: url("../../img/Glasses.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 4;
     grid-column-end: 4;
   }
-  &[data-image='jacket'] {
+  &[data-image='Tops'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/jacket.svg");
+    background-image: url("../../img/Tops.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 3;
     grid-column-end: 3;
   }
-  &[data-image='tie'] {
+  &[data-image='Accessories'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/tie.svg");
+    background-image: url("../../img/Accessories.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 4;
     grid-column-end: 4;
   }
-  &[data-image='watch'] {
+  &[data-image='Watches'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/watch.svg");
+    background-image: url("../../img/Watches.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 4;
     grid-column-end: 4;
   }
-  &[data-image='pants'] {
+  &[data-image='Legs'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/pants.svg");
+    background-image: url("../../img/Legs.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 3;
@@ -76,31 +76,31 @@
     background-repeat: no-repeat;
     background-position: center;
   }
-  &[data-image='bracelet'] {
+  &[data-image='Bracelets'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/bracelet.svg");
+    background-image: url("../../img/Bracelets.svg");
     background-repeat: no-repeat;
     background-position: center;
   }
-  &[data-image='parachute'] {
+  &[data-image='Bags and Parachutes'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/parachute.svg");
+    background-image: url("../../img/Bags and Parachutes.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 2;
     grid-column-end: 2;
   }
-  &[data-image='shoes'] {
+  &[data-image='Shoes'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/menShoe.svg");
+    background-image: url("../../img/Shoes.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 3;
     grid-column-end: 3;
   }
-  &[data-image='policeman'] {
+  &[data-image='Body Armors'] {
     background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/policeman.svg");
+    background-image: url("../../img/Body Armors.svg");
     background-repeat: no-repeat;
     background-position: center;
     grid-column-start: 4;

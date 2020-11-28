@@ -1,6 +1,7 @@
 import { IStore } from '../interfaces/IStore';
 import { IAction } from '../interfaces/IAction';
 import { EAction } from '../interfaces/EAction';
+import { IBody } from '../interfaces/IBody';
 
 export const reducer = (state: IStore, action: IAction) => {
     switch (action.type) {
@@ -8,7 +9,7 @@ export const reducer = (state: IStore, action: IAction) => {
             const { data } = action;
             const newStore = {...state.environment};
             newStore.up.data.push(data);
-            state = { ...state, ...newStore };
+            state = { ...state, environment: {...newStore} };
             return state;
         }
         case EAction.REMOVE_UP_ENV: {
@@ -18,14 +19,14 @@ export const reducer = (state: IStore, action: IAction) => {
                 return item.id !== data.id
             });
             newStore.up.data = [...newArray];
-            state = { ...state, ...newStore };
+            state = { ...state, environment: {...newStore} };
             return state;
         }
         case EAction.ADD_DOWN_ENV: {
             const { data } = action;
             const newStore = {...state.environment};
             newStore.down.data.push(data);
-            state = { ...state, ...newStore };
+            state = { ...state, environment: {...newStore} };
             return state;
         }
         case EAction.REMOVE_DOWN_ENV: {
@@ -35,23 +36,27 @@ export const reducer = (state: IStore, action: IAction) => {
                 return item.id !== data.id
             });
             newStore.down.data = [...newArray];
-            state = { ...state, ...newStore };
+            state = { ...state, environment: {...newStore} };
             return state;
         }
         case EAction.ADD_BODY_ITEM: {
             const { data } = action;
             const newState = { ...state.body };
-            // @ts-ignore
-            newState[data.description] = {...data};
-            state = {...state, body: { ...newState}};
+            if (data.description) {
+                newState[String(data.description) as keyof IBody] = {...data};
+                state = {...state, body: { ...newState}};
+                return state;
+            }
             return state;
         }
         case EAction.REMOVE_BODY_ITEM: {
             const { data } = action;
             const newState = { ...state.body };
-            // @ts-ignore
-            newState[data.description] = {description: data.description}
-            state = {...state, body: { ...newState}};
+            if (data.description) {
+                newState[data.description as keyof IBody] = {description: data.description}
+                state = {...state, body: { ...newState}};
+                return state;
+            }
             return state;
         }
         case EAction.ADD_BAG_ITEM: {
@@ -123,6 +128,20 @@ export const reducer = (state: IStore, action: IAction) => {
                 findItem.state = data.state;
                 findItem.weight = data.weight;
             }
+            state = { ...state, ...newStore };
+            return state;
+        }
+        case EAction.SET_UP_ENV_NAME: {
+            const { data } = action;
+            const newStore = {...state};
+            newStore.environment.up.title = data as unknown as string;
+            state = { ...state, ...newStore };
+            return state;
+        }
+        case EAction.SET_DOWN_ENV_NAME: {
+            const { data } = action;
+            const newStore = {...state};
+            newStore.environment.down.title = data as unknown as string;
             state = { ...state, ...newStore };
             return state;
         }

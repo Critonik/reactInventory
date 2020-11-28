@@ -3,6 +3,6 @@ import { ICellData } from './ICellData';
 
 export interface IAction {
     type: EAction;
-    data: ICellData;
+    data: ICellData | any;
 }
 

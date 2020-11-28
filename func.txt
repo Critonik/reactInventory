@@ -1,0 +1,56 @@
+openErrorModal - открытие модального окна с ошибкой. Аргумент text типа string позволяет передать свой текст ошибки.
+
+removeDisableClass - разблокирование предмета после выполнения действия. Аргумент id типа string.
+
+addInventoryItem  - добавление предмета в инвентарь. аргумент - объект с интерфейсом ICellData
+
+removeInventoryItem  - удаление предмета из инвентаря. аргумент - объект с интерфейсом ICellData
+
+addBagItem  - добавление предмета в рюкзак. аргумент - объект с интерфейсом ICellData
+
+removeBagItem  - удаление предмета из рюкзака. аргумент - объект с интерфейсом ICellData
+
+addEnvUpItem - добавление предмета в верхний инвентарь окружения. аргумент - объект с интерфейсом ICellData.
+
+removeEnvUpItem - удаление предмета из верхнего инвентаря окружени. аргумент - объект с интерфейсом ICellData.
+
+addEnvDownItem - добавление предмета в нижний инвентарь окружения. аргумент - объект с интерфейсом ICellData.
+
+removeDownEnvItem - удаление предмета из нижнего инвентаря окружени. аргумент - объект с интерфейсом ICellData.
+
+addBodyItem - добавление предмета на ячейку одежды. аргумент - объект с интерфейсом ICellData.
+
+removeBodyItem - снятие предмета с ячейки одежды. аргумент - объект с интерфейсом ICellData.
+
+setUpEnvName - добавление имени верхнему инвентарю окружения. аргумент - строка с именем.
+
+setDownEnvName - добавление имени нижнему инвентарю окружения. аргумент - строка с именем.
+
+
+Встроенные ивенты для бэка
+
+invokeEvent('moveToInventory', id) - перемещение предмета в инвентарь
+
+invokeEvent('moveToBag', id) - перемещение предмета в рюкзак
+
+invokeEvent('dropItem', id) - выбросить предмет
+
+invokeEvent('putItemOnBody', id) - попробовать надеть предмет
+
+invokeEvent('moveToDownEnv', id) - переместить в нижний инвентарь
+
+invokeEvent('moveToUpEnv', id) - переместить в верхний инвентарь окружения
+
+invokeEvent('useItem', id) - использовать
+
+invokeEvent('moveToPlayer', id, playerId, value) - передать сколько-то игроку
+
+invokeEvent('splitItem', id, playerId, value) - разделить предмет
+
+
+
+
+
+
+
+

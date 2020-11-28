@@ -6,12 +6,13 @@ import EnvironmentCell from './EnvironmentCell';
 interface IEnvironmentCol {
     title: string;
     data: ICellData[];
+    clName: string
 }
 
-const EnvironmentCol: React.FC<IEnvironmentCol> = ({title,data}) => {
+const EnvironmentCol: React.FC<IEnvironmentCol> = ({title,data, clName}) => {
 
     return (
-        <div className={`environment-body ${title}`} >
+        <div className={`environment-body ${clName}`} >
             <h1 className="env-title">{title}</h1>
             <div className="evn-scroll-wrapper drop-place">
                 {data.map((item, idx) => {
@@ -25,8 +26,8 @@ const EnvironmentCol: React.FC<IEnvironmentCol> = ({title,data}) => {
                             item={item.item}
                             owner={item.owner}
                             ownerType={item.ownerType}
-                            key={item.description + idx}
-                            where={title}
+                            key={String(item.description) + idx}
+                            where={clName}
                         />
                     )
                 })}

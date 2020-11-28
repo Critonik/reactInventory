@@ -20,18 +20,11 @@ const SplitModal: React.FC<ISplitModal> = ({closeAction, name, callBack, count})
         }
     };
 
-    const escapeDetect = (e: KeyboardEvent) => {
-        if (e.key === 'Escape' || e.key === 'Esc') {
-            closeAction();
-        }
-    }
 
     useEffect(() => {
         document.addEventListener('click', detectClick);
-        document.addEventListener('keydown', escapeDetect);
         return () => {
             document.removeEventListener('click', detectClick);
-            document.removeEventListener('keydown', escapeDetect);
         }
     }, []); // eslint-disable-line
 

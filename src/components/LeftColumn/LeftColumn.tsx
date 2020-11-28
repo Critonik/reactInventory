@@ -17,6 +17,7 @@ const LeftColumn: React.FC = () => {
                         title={item?.title || ''}
                         key={item?.title + idx}
                         data={item?.data || []}
+                        clName={item?.className || ''}
                     />
                 )
             })}

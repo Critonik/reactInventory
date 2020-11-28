@@ -21,19 +21,10 @@ const ContextMenu: React.FC<IContextMenu> = ({items, position, closeAction}) => 
         }
     };
 
-    const escapeDetect = (e: KeyboardEvent) => {
-        e.preventDefault();
-        if (e.key === 'Escape' || e.key === 'Esc') {
-            closeAction();
-        }
-    }
-
     useEffect(() => {
         document.addEventListener('click', detectClick);
-        document.addEventListener('keydown', escapeDetect);
         return () => {
             document.removeEventListener('click', detectClick);
-            document.removeEventListener('keydown', escapeDetect);
         }
     }, []); // eslint-disable-line
 

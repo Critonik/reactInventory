@@ -20,19 +20,12 @@ const AboutModal: React.FC<IAboutModal> = ({title, item, closeAction, weight, te
         }
     };
 
-    const escapeDetect = (e: KeyboardEvent) => {
-        e.preventDefault();
-        if (e.key === 'Escape' || e.key === 'Esc') {
-            closeAction();
-        }
-    }
+
 
     useEffect(() => {
         document.addEventListener('click', detectClick);
-        document.addEventListener('keydown', escapeDetect);
         return () => {
             document.removeEventListener('click', detectClick);
-            document.removeEventListener('keydown', escapeDetect);
         }
     }, []); // eslint-disable-line
 
@@ -41,7 +34,7 @@ const AboutModal: React.FC<IAboutModal> = ({title, item, closeAction, weight, te
             <div className={'modal-menu-body center-pos'}>
                 <div className="info-modal-body">
                     <div className="info-inner-wrapper">
-                        <img src={`../inventory/${item}.svg`} className="info-img" alt={title || 'item'}/>
+                        <img src={`./inventory/${item}.svg`} className="info-img" alt={title || 'item'}/>
                         <div className="info-right-col">
                             <div className="info-title">{title}</div>
                             <div className="info-desc">

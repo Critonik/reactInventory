@@ -1,19 +1,19 @@
 import { IBodyCell } from './IBodyCell';
 
 export interface IBody {
-    hat: IBodyCell;
-    earrings: IBodyCell;
-    mask: IBodyCell;
-    glasses: IBodyCell;
-    jacket: IBodyCell;
-    tie: IBodyCell;
+    Hats: IBodyCell;
+    Ears: IBodyCell;
+    Masks: IBodyCell;
+    Glasses: IBodyCell;
+    Tops: IBodyCell;
+    Bracelets: IBodyCell;
     gloves: IBodyCell;
-    bracelet: IBodyCell;
-    watch: IBodyCell;
-    pants: IBodyCell;
-    parachute: IBodyCell;
-    shoes: IBodyCell;
-    policeman: IBodyCell;
+    Accessories: IBodyCell;
+    Watches: IBodyCell;
+    Legs: IBodyCell;
+    'Bags and Parachutes': IBodyCell;
+    Shoes: IBodyCell;
+    'Body Armors': IBodyCell;
     gun: IBodyCell;
     pistol: IBodyCell;
     knife: IBodyCell;

@@ -21,18 +21,10 @@ const MoveItemModal: React.FC<IMoveItemModal> = ({closeAction, name, count, call
         }
     };
 
-    const escapeDetect = (e: KeyboardEvent) => {
-        if (e.key === 'Escape' || e.key === 'Esc') {
-            closeAction();
-        }
-    }
-
     useEffect(() => {
         document.addEventListener('click', detectClick);
-        document.addEventListener('keydown', escapeDetect);
         return () => {
             document.removeEventListener('click', detectClick);
-            document.removeEventListener('keydown', escapeDetect);
         }
     }, []); // eslint-disable-line
 

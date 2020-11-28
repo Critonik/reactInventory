@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import './InventoryCellStyles.scss';
 import { ICellData } from '../../interfaces/ICellData';
 import { IPosition } from '../InventoryBody/InventoryBody';
 import ContextMenu from '../ContextMenu/ContextMenu';
@@ -8,9 +7,10 @@ import AboutModal from '../Modal/AboutModal/AboutModal';
 import MoveItemModal from '../Modal/MoveItemModal/MoveItemModal';
 import { EType } from '../InventoryWrapper/InventoryWrapper';
 import { useStore } from '../../store/InventoryContext';
-import { EAction } from '../../interfaces/EAction';
 import DropModal from '../Modal/DropModal/DropModal';
 import SplitModal from '../Modal/SplitModal/SplitModal';
+import './InventoryCellStyles.scss';
+import { IInventory } from '../../interfaces/IInventory';
 
 
 interface IModal {
@@ -57,16 +57,14 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
 
     const openInfoModalAction = useCallback((e: React.MouseEvent) => {
         e.preventDefault();
-        if (description && weight) {
-            setModalOpen({
-                visible: true,
-                text: description,
-                weight,
-                title: description,
-                item: description
-            });
-        }
-    }, [isModalOpen]); // eslint-disable-line
+        setModalOpen({
+            visible: true,
+            text: description,
+            weight,
+            title: description,
+            item: description
+        });
+    }, [isModalOpen, props]); // eslint-disable-line
 
     const openMoveModalAction = useCallback((e: React.MouseEvent) => {
         e.preventDefault();
@@ -77,7 +75,7 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
                 state: String(state),
             });
         }
-    }, [isMoveModal]); // eslint-disable-line
+    }, [isMoveModal, props]); // eslint-disable-line
 
     const openDropModalAction = useCallback((e: React.MouseEvent) => {
         e.preventDefault();
@@ -87,7 +85,7 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
                 title: description,
             });
         }
-    }, [isDropModal]); // eslint-disable-line
+    }, [isDropModal, props]); // eslint-disable-line
 
     const openSplitModalAction = useCallback((e: React.MouseEvent) => {
         e.preventDefault();
@@ -98,54 +96,28 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
                 state: String(state),
             });
         }
-    }, [isSplitModal]); // eslint-disable-line
+    }, [isSplitModal, props]); // eslint-disable-line
 
     const dropItemAction = () => {
-        const {store: {inventory}, createAction} = contextStore;
-        if (createAction) {
+        const {store: {inventory}} = contextStore;
+        const {current} = ref;
+        if (current) {
             if (type === EType.INVENTORY) {
                 const findItem = inventory[type].data.find(item => item.id === id);
                 if (findItem) {
-                    createAction({
-                        type: EAction.REMOVE_INV_ITEM,
-                        data: {
-                            state,
-                            weight,
-                            description,
-                            id,
-                            createdDate,
-                            item,
-                            owner,
-                            ownerType,
-                            type,
-                        }
-                    });
-                    return;
+                    current.classList.add('disable-class');
                 }
             }
             if (type === EType.BAG) {
                 const findItem = inventory[type].data.find(item => item.id === id);
                 if (findItem) {
-                    createAction({
-                        type: EAction.REMOVE_BAG_ITEM,
-                        data: {
-                            state,
-                            weight,
-                            description,
-                            id,
-                            createdDate,
-                            item,
-                            owner,
-                            ownerType,
-                            type,
-                        }
-                    });
-                    return;
+                    current.classList.add('disable-class');
                 }
             }
+            // @ts-ignore
+            invokeEvent('dropItem', id) // eslint-disable-line
         }
     }
-
 
     const mouseMoveAction = (e: MouseEvent) => {
         const {current} = ref;
@@ -166,6 +138,8 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
                 onClick(e as unknown as React.MouseEvent<HTMLDivElement>);
                 current.classList.add('disable-class');
                 current.classList.remove('moved-class');
+                // @ts-ignore
+                invokeEvent('putItemOnBody', id) // eslint-disable-line
                 return;
             }
             const evnBody = dropPlace?.closest('.environment-body');
@@ -174,6 +148,16 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
                 onClick(e as unknown as React.MouseEvent<HTMLDivElement>);
                 current.classList.add('disable-class');
                 current.classList.remove('moved-class');
+                const checkUp = evnBody.classList.contains('up');
+                if (checkUp) {
+                    // @ts-ignore
+                    invokeEvent('moveToUpEnv', id) // eslint-disable-line
+                }
+                const checkDown = evnBody.classList.contains('down');
+                if (checkDown) {
+                    // @ts-ignore
+                    invokeEvent('moveToDownEnv', id) // eslint-disable-line
+                }
                 return;
             }
         }
@@ -184,6 +168,7 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
     }
 
     const dragItem = (e: React.MouseEvent) => {
+        if (e.button === 2) return;
         const target = ((e.target as HTMLElement).closest('.inv-draggable-item') as HTMLElement);
         const {current} = ref;
         if (target && current) {
@@ -224,7 +209,7 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
                      onDoubleClick={onClick}
                 >
                     <h2 className="cell-head">{description}</h2>
-                    <img className="cell-img" src={`./inventory/${description}.svg`} alt={description}/>
+                    <img className="cell-img" src={`./inventory/${description}.svg`} alt={description || ''}/>
                     <div className="cell-bottom">
                         <div className="cell-count">{state}шт</div>
                         <div className="cell-count">{weight ? `${weight}кг` : ''}</div>
@@ -233,91 +218,44 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
             )
         }
         return null;
-    }
+    };
 
     const moveToInvAction = () => {
-        const {store: {inventory}, createAction} = contextStore;
+        const {store: {inventory}} = contextStore;
+        const {current} = ref;
+        if (current) {
+            const findItem = inventory[type as keyof IInventory].data.find(item => item.id === id);
+            if (findItem) {
+                current.classList.add('disable-class');
+                // @ts-ignore
+                invokeEvent('moveToInventory', id) // eslint-disable-line
+            }
+        }
+    };
 
-        if (createAction) {
-            if (type === EType.INVENTORY) {
-                const findItem = inventory[type].data.find(item => item.id === id);
-                if (findItem) {
-                    createAction({
-                        type: EAction.ADD_BAG_ITEM,
-                        data: {
-                            state,
-                            weight,
-                            description,
-                            id,
-                            createdDate,
-                            item,
-                            owner,
-                            ownerType,
-                            type,
-                        }
-                    });
-                    createAction({
-                        type: EAction.REMOVE_INV_ITEM,
-                        data: {
-                            state,
-                            weight,
-                            description,
-                            id,
-                            createdDate,
-                            item,
-                            owner,
-                            ownerType,
-                            type,
-                        }
-                    });
-                }
-            }
-        }
-    };
     const moveToBagAction = () => {
-        const {store: {inventory}, createAction} = contextStore;
-        if (createAction) {
-            if (type === EType.BAG) {
-                const findItem = inventory[type].data.find(item => item.id === id);
-                if (findItem) {
-                    createAction({
-                        type: EAction.ADD_INV_ITEM,
-                        data: {
-                            state,
-                            weight,
-                            description,
-                            id,
-                            createdDate,
-                            item,
-                            owner,
-                            ownerType,
-                            type,
-                        }
-                    });
-                    createAction({
-                        type: EAction.REMOVE_BAG_ITEM,
-                        data: {
-                            state,
-                            weight,
-                            description,
-                            id,
-                            createdDate,
-                            item,
-                            owner,
-                            ownerType,
-                            type,
-                        }
-                    });
-                }
+        const {store: {inventory}} = contextStore;
+        const {current} = ref;
+        if (current) {
+            const findItem = inventory[type as keyof IInventory].data.find(item => item.id === id);
+            if (findItem) {
+                current.classList.add('disable-class');
+                // @ts-ignore
+                invokeEvent('moveToBag', id) // eslint-disable-line
             }
         }
     };
+
+    const useItem = () => {
+        // @ts-ignore
+        invokeEvent('useItem', id) // eslint-disable-line
+    }
 
 
     const menuItemsForBag: IMenuData[] = [
         {
             text: 'Использовать',
-            action: () => null,
+            action: useItem,
         }, {
             text: 'Передать',
             action: openMoveModalAction,
@@ -342,7 +280,7 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
     const menuItemsForInv: IMenuData[] = [
         {
             text: 'Использовать',
-            action: () => null,
+            action: useItem,
         }, {
             text: 'Передать',
             action: openMoveModalAction,
@@ -367,87 +305,44 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
     const checkItems = type === EType.INVENTORY ? menuItemsForInv : menuItemsForBag;
 
     const moveItemAction = (playerId: string, value: string) => {
-        const {store: {inventory}, createAction} = contextStore;
-        if (createAction) {
+        const {store: {inventory}} = contextStore;
+        const {current} = ref;
+        if (current) {
             if (type === EType.INVENTORY) {
                 const findItem = inventory[type].data.find(item => item.id === id);
                 if (findItem) {
-                    // invokeEvent(playerId, value, id)
-                    if (findItem.state === Number(value)) {
-                        createAction({
-                            type: EAction.REMOVE_INV_ITEM,
-                            data: {
-                                state,
-                                weight,
-                                description,
-                                id,
-                                createdDate,
-                                item,
-                                owner,
-                                ownerType,
-                                type,
-                            }
-                        });
-                        return;
-                    }
-                    const newState = state - Number(value);
-                    const newWeight = Math.round(weight - ((weight / state) * newState));
-                    createAction({
-                        type: EAction.CHANGE_INV_ITEM_STATE,
-                        data: {
-                            state: newState,
-                            weight: newWeight,
-                            description,
-                            id,
-                            createdDate,
-                            item,
-                            owner,
-                            ownerType,
-                            type,
-                        }
-                    });
-                    return;
+                    current.classList.add('disable-class');
                 }
             }
             if (type === EType.BAG) {
                 const findItem = inventory[type].data.find(item => item.id === id);
                 if (findItem) {
-                    // invokeEvent(playerId, value, id)
-                    if (findItem.state === Number(value)) {
-                        createAction({
-                            type: EAction.REMOVE_BAG_ITEM,
-                            data: {
-                                state,
-                                weight,
-                                description,
-                                id,
-                                createdDate,
-                                item,
-                                owner,
-                                ownerType,
-                                type,
-                            }
-                        });
-                        return;
-                    }
-                    const newState = state - Number(value);
-                    const newWeight = Math.round(weight - ((weight / state) * newState));
-                    createAction({
-                        type: EAction.CHANGE_INV_ITEM_STATE,
-                        data: {
-                            state: newState,
-                            weight: newWeight,
-                            description,
-                            id,
-                            createdDate,
-                            item,
-                            owner,
-                            ownerType,
-                            type,
-                        }
-                    })
+                    current.classList.add('disable-class');
                 }
             }
+            // @ts-ignore
+            invokeEvent('moveToPlayer', id, playerId, value) // eslint-disable-line
+        }
+    }
+
+    const splitItemAction = (value: string) => {
+        const {store: {inventory}} = contextStore;
+        const {current} = ref;
+        if (current) {
+            if (type === EType.INVENTORY) {
+                const findItem = inventory[type].data.find(item => item.id === id);
+                if (findItem) {
+                    current.classList.add('disable-class');
+                }
+            }
+            if (type === EType.BAG) {
+                const findItem = inventory[type].data.find(item => item.id === id);
+                if (findItem) {
+                    current.classList.add('disable-class');
+                }
+            }
+            // @ts-ignore
+            invokeEvent('splitItem', id, value) // eslint-disable-line
         }
     }
 
@@ -497,7 +392,7 @@ const InventoryCell: React.FC<IInventoryCell> = (props) => {
                     name={isSplitModal.title || ''}
                     closeAction={() => setSplitModal({visible: false})}
                     count={isSplitModal.state || ''}
-                    callBack={() => null}
+                    callBack={splitItemAction}
                 />
             }
         </div>

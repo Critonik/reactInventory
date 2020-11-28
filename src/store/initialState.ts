@@ -67,14 +67,14 @@ import { IStore } from '../interfaces/IStore';
 
 export const initialState: IStore = {
     body: {
-        bracelet: {
-            description: 'bracelet',
+        Bracelets: {
+            description: 'Bracelets',
         },
-        earrings: {
-            description: 'earrings'
+        Ears: {
+            description: 'Ears'
         },
-        glasses: {
-            description: 'glasses'
+        Glasses: {
+            description: 'Glasses'
         },
         gloves: {
             description: 'gloves'
@@ -85,48 +85,50 @@ export const initialState: IStore = {
         gun: {
             description: 'gun'
         },
-        hat: {
-            description: 'hat'
+        Hats: {
+            description: 'Hats'
         },
-        jacket: {
-            description: 'jacket'
+        Tops: {
+            description: 'Tops'
         },
         knife: {
             description: 'knife'
         },
-        mask: {
-            description: 'mask'
+        Masks: {
+            description: 'Masks'
         },
-        pants: {
-            description: 'pants'
+        Legs: {
+            description: 'Legs'
         },
-        parachute: {
-            description: 'parachute'
+        'Bags and Parachutes': {
+            description: 'Bags and Parachutes'
         },
         pistol: {
             description: 'pistol'
         },
-        policeman: {
-            description: 'policeman'
+        'Body Armors': {
+            description: 'Body Armors'
         },
-        shoes: {
-            description: 'shoes'
+        Shoes: {
+            description: 'Shoes'
         },
-        tie: {
-            description: 'tie'
+        Accessories: {
+            description: 'Accessories'
         },
-        watch: {
-            description: 'watch'
+        Watches: {
+            description: 'Watches'
         }
     },
     environment: {
         down: {
             data: [],
-            title: ''
+            title: '',
+            className: 'down',
         },
         up: {
             data: [],
-            title: ''
+            title: '',
+            className: 'up',
         }
     },
     inventory: {

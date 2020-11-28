@@ -4,4 +4,5 @@ export interface IEnvironmentPart {
     title: string;
     data: ICellData[];
     weight?: number;
+    className?: string;
 }

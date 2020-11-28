@@ -4,9 +4,7 @@ import './BodyCellStyles.scss';
 import ContextMenu from '../ContextMenu/ContextMenu';
 import { IPosition } from '../InventoryBody/InventoryBody';
 import { IMenuData } from '../../interfaces/IMenuItems';
-import { EAction } from '../../interfaces/EAction';
 import { useStore } from '../../store/InventoryContext';
-import { ICellData } from '../../interfaces/ICellData';
 
 interface ICell {
     data: IBodyCell;
@@ -38,44 +36,35 @@ const BodyCell: React.FC<ICell> = (props) => {
     }, [isOpen]); // eslint-disable-line
 
 
-    const moveToAction = () => {
+    const moveToInventoryAction = () => {
         const {createAction} = contextStore;
-        if (createAction && props.data) {
-            createAction({
-                type: EAction.ADD_INV_ITEM,
-                data: {...props.data as ICellData}
-            });
-            createAction({
-                type: EAction.REMOVE_BODY_ITEM,
-                data: {...props.data as ICellData}
-            });
+        const { current } = ref;
+        if (createAction && props && current) {
+            current.classList.add('disable-class');
+            // @ts-ignore
+            invokeEvent('moveToInventory', id) // eslint-disable-line
         }
     };
 
     const moveToBagAction = () => {
         const {createAction} = contextStore;
-        if (createAction && props.data) {
-            createAction({
-                type: EAction.ADD_BAG_ITEM,
-                data: {...props.data as ICellData}
-            });
-            createAction({
-                type: EAction.REMOVE_BODY_ITEM,
-                data: {...props.data as ICellData}
-            });
+        const { current } = ref;
+        if (createAction && props && current) {
+            current.classList.add('disable-class');
+            // @ts-ignore
+            invokeEvent('moveToBag', id) // eslint-disable-line
         }
     };
 
     const dropAction = () => {
         const {createAction} = contextStore;
-        if (createAction && props.data) {
-            createAction({
-                type: EAction.REMOVE_BODY_ITEM,
-                data: {...props.data as ICellData}
-            });
+        const { current } = ref;
+        if (createAction && props && current) {
+            current.classList.add('disable-class');
+            // @ts-ignore
+            invokeEvent('dropItem', id) // eslint-disable-line
         }
     };
-
 
     const bodyItem: IMenuData[] = [
         {
@@ -83,7 +72,7 @@ const BodyCell: React.FC<ICell> = (props) => {
             action: dropAction,
         }, {
             text: 'Переместить в инвентарь',
-            action: moveToAction,
+            action: moveToInventoryAction,
         }, {
             text: 'Переместить в рюкзак',
             action: moveToBagAction,
@@ -107,13 +96,33 @@ const BodyCell: React.FC<ICell> = (props) => {
                 onClick(e as unknown as React.MouseEvent<HTMLDivElement>);
                 current.classList.add('disable-class');
                 document.removeEventListener('mousemove', mouseMoveAction);
+                if (dropPlace.closest('.inv')) {
+                    // @ts-ignore
+                    invokeEvent('moveToInventory', id) // eslint-disable-line
+                }
+
+                if (dropPlace.closest('.bag')) {
+                    // @ts-ignore
+                    invokeEvent('moveToBag', id) // eslint-disable-line
+                }
                 return;
             }
             const evnBody = dropPlace?.closest('.environment-body');
             if (evnBody) {
+                document.removeEventListener('mousemove', mouseMoveAction);
                 onClick(e as unknown as React.MouseEvent<HTMLDivElement>);
                 current.classList.add('disable-class');
-                document.removeEventListener('mousemove', mouseMoveAction);
+                current.classList.remove('moved-class');
+                const checkUp = evnBody.classList.contains('up');
+                if (checkUp) {
+                    // @ts-ignore
+                    invokeEvent('moveToUpEnv', id) // eslint-disable-line
+                }
+                const checkDown = evnBody.classList.contains('down');
+                if (checkDown) {
+                    // @ts-ignore
+                    invokeEvent('moveToDownEnv', id) // eslint-disable-line
+                }
                 return;
             }
         }
@@ -135,6 +144,7 @@ const BodyCell: React.FC<ICell> = (props) => {
     }
 
     const dragItem = (e: React.MouseEvent) => {
+        if (e.button === 2) return;
         const target = ((e.target as HTMLElement).closest('.contain') as HTMLElement);
         const {current} = ref;
         if (target && current) {

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import './LayoutStyles.scss';
+import React, { useCallback, useState } from 'react';
 import LeftColumn from '../LeftColumn/LeftColumn';
 import CenterColumn from '../CenterColumn/CenterColumn';
 import RightColumn from '../RightColumn/RightColumn';
@@ -7,40 +6,52 @@ import ErrorModal from '../Modal/ErrorModal/ErrorModal';
 import { useStore } from '../../store/InventoryContext';
 import { ICellData } from '../../interfaces/ICellData';
 import { EAction } from '../../interfaces/EAction';
+import './LayoutStyles.scss';
+
+interface IErrorModal {
+    visible: boolean;
+    text: string;
+}
+
+const initErrorState: IErrorModal = {
+    text: 'Невозможно выполнить действие',
+    visible: false
+}
 
 const Layout: React.FC = () => {
 
-    const [errorModal, openError] = useState<boolean>(false);
+    const [errorModal, openError] = useState<IErrorModal>(initErrorState);
 
     const { createAction } = useStore();
 
-    // добавить дефолтный текст
-
-    // eslint-disable-next-line
-    const openErrorModal = () => {
-        openError(true);
+    // @ts-ignore
+    window.openErrorModal = (text = 'Невозможно выполнить действие') => {
+        openError({
+            visible: true,
+            text: text
+        });
     }
 
-    // eslint-disable-next-line
-    const removeDisableClass = (id: string) => {
+    // @ts-ignore
+    window.removeDisableClass = (id: string) => {
         const removedTarget = document.querySelector(`[data-id = "${id}"]`);
         if(removedTarget) {
             removedTarget.classList.remove('disable-class');
         }
     }
 
-    // eslint-disable-next-line
-    const addInventoryItem = (data: ICellData) => {
+    // @ts-ignore
+    window.addInventoryItem = useCallback((data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
                 type: EAction.ADD_INV_ITEM
             })
         }
-    }
+    }, []);
 
-    // eslint-disable-next-line
-    const removeInventoryItem = (data: ICellData) => {
+    // @ts-ignore
+    window.removeInventoryItem = (data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
@@ -49,8 +60,8 @@ const Layout: React.FC = () => {
         }
     }
 
-    // eslint-disable-next-line
-    const addBagItem = (data: ICellData) => {
+    /// @ts-ignore
+    window.addBagItem = (data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
@@ -59,8 +70,8 @@ const Layout: React.FC = () => {
         }
     }
 
-    // eslint-disable-next-line
-    const removeBagItem = (data: ICellData) => {
+    // @ts-ignore
+    window.removeBagItem = (data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
@@ -69,18 +80,18 @@ const Layout: React.FC = () => {
         }
     }
 
-    // eslint-disable-next-line
-    const addEnvUpItem = (data: ICellData) => {
+    // @ts-ignore
+    window.addEnvUpItem = useCallback((data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
                 type: EAction.ADD_UP_ENV
             })
         }
-    }
+    },[])
 
-    // eslint-disable-next-line
-    const removeEnvUpItem = (data: ICellData) => {
+    // @ts-ignore
+    window.removeEnvUpItem = (data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
@@ -89,18 +100,18 @@ const Layout: React.FC = () => {
         }
     }
 
-    // eslint-disable-next-line
-    const addEnvDownItem = (data: ICellData) => {
+    // @ts-ignore
+    window.addEnvDownItem = useCallback((data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
                 type: EAction.ADD_DOWN_ENV
             })
         }
-    }
+    }, [])
 
-    // eslint-disable-next-line
-    const removeDownUpItem = (data: ICellData) => {
+    // @ts-ignore
+    window.removeDownEnvItem = (data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
@@ -109,8 +120,8 @@ const Layout: React.FC = () => {
         }
     }
 
-    // eslint-disable-next-line
-    const addBodyDownItem = (data: ICellData) => {
+    // @ts-ignore
+    window.addBodyItem = (data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
@@ -119,12 +130,31 @@ const Layout: React.FC = () => {
         }
     }
 
-    // eslint-disable-next-line
-    const removeBodyDownItem = (data: ICellData) => {
+    // @ts-ignore
+    window.removeBodyItem = (data: ICellData) => {
         if (createAction) {
             createAction({
                 data,
                 type: EAction.REMOVE_BODY_ITEM
+            })
+        }
+    }
+    // @ts-ignore
+    window.setUpEnvName = (text: string) => {
+        if (createAction) {
+            createAction({
+                data: text,
+                type: EAction.SET_UP_ENV_NAME
+            })
+        }
+    }
+
+    // @ts-ignore
+    window.setDownEnvName = (text: string) => {
+        if (createAction) {
+            createAction({
+                data: text,
+                type: EAction.SET_DOWN_ENV_NAME
             })
         }
     }
@@ -136,11 +166,11 @@ const Layout: React.FC = () => {
             <CenterColumn/>
             <RightColumn/>
             {
-                errorModal &&
+                errorModal.visible &&
                 <ErrorModal
-                    text={'Невозможно выполнить действие'}
-                    title={'Ошбика'}
-                    closeAction={() => openError(false)}
+                    text={errorModal.text}
+                    title={'Ошибка'}
+                    closeAction={() => openError({...errorModal, visible: false})}
                 />
             }
         </div>
