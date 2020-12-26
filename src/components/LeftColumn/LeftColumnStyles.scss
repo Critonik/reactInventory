@@ -7,7 +7,7 @@
   height: 100%;
   max-height: 380px;
   min-width: 141px;
-  max-width: 141px;
+  max-width: 341px;
   flex: 1 1 150px;
   margin-right: 41px;
 }
@@ -15,8 +15,7 @@
 @media screen and (min-width: $desktop) {
   .left {
     max-height: 570px;
-    min-width: 201px;
-    max-width: 201px;
+    min-width: 221px;
   }
 }
 
@@ -24,7 +23,7 @@
   .left {
     max-height: 793px;
     min-width: 290px;
-    max-width: 290px;
+    max-width: 390px;
   }
 }
 
@@ -32,7 +31,7 @@
   .left {
     max-height: 893px;
     min-width: 340px;
-    max-width: 340px;
+    max-width: 440px;
   }
 }
 
@@ -40,6 +39,6 @@
   .left {
     max-height: 1026px;
     min-width: 390px;
-    max-width: 390px;
+    max-width: 590px;
   }
 }

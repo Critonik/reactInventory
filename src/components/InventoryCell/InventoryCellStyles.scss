@@ -6,8 +6,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 42px;
-  width: 42px;
+  height: 62px;
+  width: 62px;
   background: rgba(121, 121, 121, 0.17);
   border-radius: 2.63703px;
 }
@@ -30,8 +30,8 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  max-width: 42px;
-  max-height: 42px;
+  max-width: 62px;
+  max-height: 62px;
   justify-content: space-between;
   padding: 1px 5px;
   cursor: pointer;
@@ -41,21 +41,24 @@
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
-  font-size: 3.05433px;
-  line-height: 4px;
+  font-size: 13.05433px;
+  line-height: 14px;
   text-align: center;
   color: #FFFFFF;
   margin: 0;
+  width: calc(100% - 1px);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cell-img {
-  width: 23px;
-  height: 23px;
+  width: 33px;
+  height: 33px;
 }
 
 .cell-bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -68,125 +71,125 @@
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
-  font-size: 4.28518px;
-  line-height: 5px;
+  font-size: 14.28518px;
+  line-height: 15px;
   text-align: center;
   color: #FFFFFF;
 }
 
 @media screen and (min-width: $desktop) {
   .inventory-cell {
-    height: 66px;
-    width: 66px;
+    height: 86px;
+    width: 86px;
     border-radius: 3.63703px;
   }
 
   .inv-draggable-item {
     padding: 2px 7px;
-    max-width: 66px;
-    max-height: 66px;
+    max-width: 86px;
+    max-height: 86px;
   }
 
   .cell-head {
-    font-size: 4.05433px;
-    line-height: 7px;
+    font-size: 16.05433px;
+    line-height: 19px;
     text-align: center;
   }
 
   .cell-img {
-    width: 36px;
-    height: 36px;
+    width: 46px;
+    height: 46px;
   }
 
   .cell-count {
-    font-size: 6.28518px;
-    line-height: 7px;
+    font-size: 16.28518px;
+    line-height: 17px;
   }
 }
 
 @media screen and (min-width: $ultra) {
   .inventory-cell {
-    height: 90px;
-    width: 90px;
+    height: 110px;
+    width: 110px;
     border-radius: 4px;
   }
 
   .inv-draggable-item {
     padding: 3px 11px;
-    max-width: 90px;
-    max-height: 90px;
+    max-width: 110px;
+    max-height: 110px;
   }
 
   .cell-head {
-    font-size: 6.41489px;
-    line-height: 8px;
+    font-size: 21.41489px;
+    line-height: 24px;
   }
 
   .cell-img {
-    width: 49px;
-    height: 49px;
+    width: 59px;
+    height: 59px;
   }
 
   .cell-count {
-    font-size: 9px;
-    line-height: 11px;
+    font-size: 19px;
+    line-height: 21px;
   }
 }
 
 @media screen and (min-width: $ultraWide) {
   .inventory-cell {
-    height: 100px;
-    width: 100px;
+    height: 130px;
+    width: 130px;
     border-radius: 4px;
   }
 
   .inv-draggable-item {
     padding: 3px 11px;
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 130px;
+    max-height: 130px;
   }
 
   .cell-head {
-    font-size: 7.41489px;
-    line-height: 9px;
+    font-size: 24.41489px;
+    line-height: 26px;
   }
 
   .cell-img {
-    width: 55px;
-    height: 55px;
+    width: 65px;
+    height: 65px;
   }
 
   .cell-count {
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 20px;
+    line-height: 22px;
   }
 }
 
 @media screen and (min-width: $max) {
   .inventory-cell {
-    height: 116px;
-    width: 116px;
+    height: 146px;
+    width: 146px;
     border-radius: 7.1666px;
   }
 
   .inv-draggable-item {
     padding: 5px 18px;
-    max-width: 116px;
-    max-height: 116px;
+    max-width: 146px;
+    max-height: 146px;
   }
 
   .cell-head {
-    font-size: 8.29435px;
-    line-height: 10px;
+    font-size: 28.29435px;
+    line-height: 30px;
   }
 
   .cell-img {
-    width: 62px;
-    height: 62px;
+    width: 72px;
+    height: 72px;
   }
 
   .cell-count {
-    font-size: 11.6457px;
-    line-height: 14px;
+    font-size: 21.6457px;
+    line-height: 24px;
   }
 }

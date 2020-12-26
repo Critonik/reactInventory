@@ -38,7 +38,7 @@ const CenterColumn: React.FC = () => {
                 </BodyRow>
                 <BodyRow>
                     <BodyCell
-                        data={storeData?.gloves}
+                        data={storeData?.Gloves}
                     />
                     <BodyCell
                         data={storeData?.Bracelets}
@@ -55,29 +55,33 @@ const CenterColumn: React.FC = () => {
                 <BodyRow/>
                 <BodyRow>
                     <BodyCell
-                        data={storeData?.['Bags and Parachutes']}
+                        data={storeData?.BagsAndParachutes}
                     />
                     <BodyCell
                         data={storeData?.Shoes}
                     />
                     <BodyCell
-                        data={storeData?.['Body Armors']}
+                        data={storeData?.BodyArmors}
                     />
                 </BodyRow>
                 <BodyRow>
                     <BodyCell
                         data={storeData?.gun}
+                        extraClassName={'gun'}
                     />
                 </BodyRow>
                 <BodyRow>
                     <BodyCell
-                        data={storeData?.pistol}
+                        data={storeData?.pistols}
+                        extraClassName={'pistols'}
                     />
                     <BodyCell
                         data={storeData?.knife}
+                        extraClassName={'knife'}
                     />
                     <BodyCell
                         data={storeData?.grenade}
+                        extraClassName={'grenade'}
                     />
                 </BodyRow>
             </div>

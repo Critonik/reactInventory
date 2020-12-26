@@ -5,19 +5,21 @@ import ContextMenu from '../ContextMenu/ContextMenu';
 import { IPosition } from '../InventoryBody/InventoryBody';
 import { IMenuData } from '../../interfaces/IMenuItems';
 import { useStore } from '../../store/InventoryContext';
+import { EAction } from '../../interfaces/EAction';
 
 interface ICell {
     data: IBodyCell;
+    extraClassName?: string;
 }
 
 const BodyCell: React.FC<ICell> = (props) => {
-    const {id, item, state, weight, description, ownerType, owner, createdDate} = props.data;
+    const { id, item, state, weight, description, ownerType, owner, createdDate, disabled } = props.data;
 
     const ref = React.createRef<HTMLDivElement>();
 
 
     const [isOpen, setOpen] = useState<boolean>(false);
-    const [position, setPos] = useState<IPosition>({x: 0, y: 0});
+    const [position, setPos] = useState<IPosition>({ x: 0, y: 0 });
 
     const closeAction = () => setOpen(false);
 
@@ -35,32 +37,42 @@ const BodyCell: React.FC<ICell> = (props) => {
         }
     }, [isOpen]); // eslint-disable-line
 
+    const disableItem = () => {
+        const { createAction } = contextStore;
+        if (createAction) {
+            createAction({
+                data: {
+                    id,
+                    disable: true
+                },
+                type: EAction.ADD_DISABLE_BODY
+            })
+        }
+    }
+
 
     const moveToInventoryAction = () => {
-        const {createAction} = contextStore;
         const { current } = ref;
-        if (createAction && props && current) {
-            current.classList.add('disable-class');
+        if (props && current) {
+            disableItem();
             // @ts-ignore
             invokeEvent('moveToInventory', id) // eslint-disable-line
         }
     };
 
     const moveToBagAction = () => {
-        const {createAction} = contextStore;
         const { current } = ref;
-        if (createAction && props && current) {
-            current.classList.add('disable-class');
+        if (props && current) {
+            disableItem();
             // @ts-ignore
             invokeEvent('moveToBag', id) // eslint-disable-line
         }
     };
 
     const dropAction = () => {
-        const {createAction} = contextStore;
         const { current } = ref;
-        if (createAction && props && current) {
-            current.classList.add('disable-class');
+        if (props && current) {
+            disableItem();
             // @ts-ignore
             invokeEvent('dropItem', id) // eslint-disable-line
         }
@@ -74,13 +86,13 @@ const BodyCell: React.FC<ICell> = (props) => {
             text: 'Переместить в инвентарь',
             action: moveToInventoryAction,
         }, {
-            text: 'Переместить в рюкзак',
+            text: 'Переместить в сумку',
             action: moveToBagAction,
         }
     ];
 
     const mouseMoveAction = (e: MouseEvent) => {
-        const {current} = ref;
+        const { current } = ref;
         if (current) {
             current.style.left = e.pageX + 'px';
             current.style.top = e.pageY + 'px';
@@ -88,14 +100,16 @@ const BodyCell: React.FC<ICell> = (props) => {
     }
 
     const onDrop = (e: MouseEvent) => {
-        const {current} = ref;
+        const { current } = ref;
+        e.stopPropagation();
         if (current && props.data) {
             current.style.position = 'static';
             const dropPlace = document.elementFromPoint(e.pageX, e.pageY);
             if (dropPlace?.closest('.inventory-cell')) {
                 onClick(e as unknown as React.MouseEvent<HTMLDivElement>);
-                current.classList.add('disable-class');
+                disableItem();
                 document.removeEventListener('mousemove', mouseMoveAction);
+                document.removeEventListener('mouseup', onDrop);
                 if (dropPlace.closest('.inv')) {
                     // @ts-ignore
                     invokeEvent('moveToInventory', id) // eslint-disable-line
@@ -110,8 +124,9 @@ const BodyCell: React.FC<ICell> = (props) => {
             const evnBody = dropPlace?.closest('.environment-body');
             if (evnBody) {
                 document.removeEventListener('mousemove', mouseMoveAction);
+                document.removeEventListener('mouseup', onDrop);
                 onClick(e as unknown as React.MouseEvent<HTMLDivElement>);
-                current.classList.add('disable-class');
+                disableItem()
                 current.classList.remove('moved-class');
                 const checkUp = evnBody.classList.contains('up');
                 if (checkUp) {
@@ -127,6 +142,7 @@ const BodyCell: React.FC<ICell> = (props) => {
             }
         }
         document.removeEventListener('mousemove', mouseMoveAction);
+        document.removeEventListener('mouseup', onDrop);
         onClick(e as unknown as React.MouseEvent<HTMLDivElement>);
         current?.classList.remove('disable-class');
     }
@@ -145,12 +161,13 @@ const BodyCell: React.FC<ICell> = (props) => {
 
     const dragItem = (e: React.MouseEvent) => {
         if (e.button === 2) return;
+        e.stopPropagation();
         const target = ((e.target as HTMLElement).closest('.contain') as HTMLElement);
-        const {current} = ref;
+        const { current } = ref;
         if (target && current) {
             target.style.position = 'absolute';
             document.addEventListener('mousemove', mouseMoveAction);
-            current.onmouseup = onDrop;
+            document.addEventListener('mouseup', onDrop);
         }
     }
 
@@ -158,7 +175,7 @@ const BodyCell: React.FC<ICell> = (props) => {
         if (props.data.id) {
             return (
                 <div
-                    className="body-item contain"
+                    className={`body-item contain ${disabled && 'disable-class'}`}
                     data-image={description}
                     data-item={item}
                     data-state={state}
@@ -173,7 +190,7 @@ const BodyCell: React.FC<ICell> = (props) => {
                     onClick={onClick}
                     onDoubleClick={onClick}
                     ref={ref}
-                    style={{backgroundImage: `url("./inventory/${description}.svg")`}}
+                    style={{ backgroundImage: `url("./inventory/${description}.svg")` }}
                 />
             )
         }
@@ -182,7 +199,7 @@ const BodyCell: React.FC<ICell> = (props) => {
 
     return (
         <div
-            className="body-item"
+            className={`body-item ${props.extraClassName}`}
             data-image={description}
             data-item={item}
             data-state={state}

@@ -12,8 +12,8 @@
   @include scrollstyles;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: minmax(max-content, 42px);
-  max-height: 136px;
+  grid-auto-rows: minmax(max-content, 62px);
+  max-height: 236px;
   margin-bottom: 7.5px;
   grid-gap: 3.33px;
 }
@@ -21,8 +21,8 @@
 
 @media screen and (min-width: $desktop) {
   .inventory-scroll-wrapper-inv {
-    grid-auto-rows: minmax(max-content, 66px);
-    max-height: 212px;
+    grid-auto-rows: minmax(max-content, 86px);
+    max-height: 312px;
     margin-bottom: 12.5px;
     grid-gap: 6.33px;
   }
@@ -30,8 +30,8 @@
 
 @media screen and (min-width: $ultra) {
   .inventory-scroll-wrapper-inv {
-    grid-auto-rows: minmax(max-content, 90px);
-    max-height: 290px;
+    grid-auto-rows: minmax(max-content, 110px);
+    max-height: 390px;
     margin-bottom: 16px;
     grid-gap: 10px;
   }
@@ -39,8 +39,8 @@
 
 @media screen and (min-width: $ultraWide) {
   .inventory-scroll-wrapper-inv {
-    grid-auto-rows: minmax(max-content, 100px);
-    max-height: 324px;
+    grid-auto-rows: minmax(max-content, 130px);
+    max-height: 424px;
     margin-bottom: 16px;
     grid-gap: 11px;
   }
@@ -48,8 +48,8 @@
 
 @media screen and (min-width: $max) {
   .inventory-scroll-wrapper-inv {
-    grid-auto-rows: minmax(max-content, 116px);
-    max-height: 367px;
+    grid-auto-rows: minmax(max-content, 146px);
+    max-height: 467px;
     margin-bottom: 20px;
     grid-gap: 13px;
   }

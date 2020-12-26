@@ -1,44 +1,96 @@
 @import "../../global-styles/media";
 
 .center {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  max-height: 380px;
-  flex: 1 1 156px;
-  min-width: 156px;
-  max-width: 156px;
-  margin-right: 41px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 380px;
+    flex: 1 1 156px;
+    min-width: 156px;
+    max-width: 156px;
+    margin-right: 41px;
+
+    .gun {
+        grid-column-start: 2;
+        grid-column-end: 5;
+        width: 93%;
+
+        & > div {
+            width: 93%;
+            max-width: 109px;
+        }
+    }
+
+    .pistols {
+        grid-column-start: 2;
+        grid-column-end: 2;
+    }
+
+    .knife {
+        grid-column-start: 3;
+        grid-column-end: 3;
+        background-size: contain;
+    }
+
+    .grenade {
+        grid-column-start: 4;
+        grid-column-end: 4;
+        background-size: contain;
+    }
 }
 
 @media screen and (min-width: $desktop) {
-  .center {
-    max-height: 570px;
-    min-width: 226px;
-    max-width: 226px;
-  }
+    .center {
+        max-height: 570px;
+        min-width: 226px;
+        max-width: 226px;
+
+        .gun {
+            & > div {
+                max-width: 157px;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: $ultra) {
-  .center {
-    max-height: 793px;
-    min-width: 328px;
-    max-width: 328px;
-  }
+    .center {
+        max-height: 793px;
+        min-width: 328px;
+        max-width: 328px;
+
+        .gun {
+            & > div {
+                max-width: 228px;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: $ultraWide) {
-  .center {
-    max-height: 893px;
-    min-width: 378px;
-    max-width: 378px;
-  }
+    .center {
+        max-height: 893px;
+        min-width: 378px;
+        max-width: 378px;
+
+        .gun {
+            & > div {
+                max-width: 262px;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: $max) {
-  .center {
-    max-height: 1026px;
-    min-width: 425px;
-    max-width: 425px;
-  }
+    .center {
+        max-height: 1026px;
+        min-width: 425px;
+        max-width: 425px;
+
+        .gun {
+            & > div {
+                max-width: 295px;
+            }
+        }
+    }
 }

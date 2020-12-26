@@ -28,6 +28,7 @@ const EnvironmentCol: React.FC<IEnvironmentCol> = ({title,data, clName}) => {
                             ownerType={item.ownerType}
                             key={String(item.description) + idx}
                             where={clName}
+                            disabled={item.disabled}
                         />
                     )
                 })}

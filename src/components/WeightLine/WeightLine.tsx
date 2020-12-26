@@ -1,4 +1,5 @@
 import React from 'react';
+import { weightConverter } from '../../store/weightConverter';
 import './WeightLineStyles.scss';
 
 interface IWeightLine {
@@ -8,7 +9,7 @@ interface IWeightLine {
 
 const WeightLine: React.FC<IWeightLine> = ({max, current}) => {
 
-    const percent = Math.round((current * 100) / max);
+    const percent = Math.round(((current / 1000) * 100) / max);
 
     return (
         <div className="weight-line-wrapper">
@@ -16,7 +17,7 @@ const WeightLine: React.FC<IWeightLine> = ({max, current}) => {
 
             </div>
             <div className="weight-count-info">
-                {`${current} кг из ${max} кг`}
+                {weightConverter(current)} из {max} кг
             </div>
         </div>
     )

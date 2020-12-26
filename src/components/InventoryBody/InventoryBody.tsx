@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { ICellData } from '../../interfaces/ICellData';
 import InventoryCell from '../InventoryCell/InventoryCell';
 import './InventoryBodyStyles.scss';
@@ -6,6 +6,7 @@ import './InventoryBodyStyles.scss';
 interface IInventoryBody {
     data: ICellData[];
     type: string;
+    isDisabled?: boolean
 }
 
 export interface IPosition {
@@ -13,11 +14,11 @@ export interface IPosition {
     y: number;
 }
 
-const InventoryBody: React.FC<IInventoryBody> = ({data, type}) => {
+const InventoryBody: React.FC<IInventoryBody> = ({ data, type, isDisabled }) => {
 
     return (
         <div className="inventory-scroll-wrapper">
-            <div className={`inventory-scroll-wrapper-inv ${type}`}>
+            <div className={`inventory-scroll-wrapper-inv ${type} ${isDisabled && 'disable-class'}`}>
                 {data.map((item, idx) =>
                     <InventoryCell
                         description={item.description}
@@ -30,6 +31,8 @@ const InventoryBody: React.FC<IInventoryBody> = ({data, type}) => {
                         ownerType={item.ownerType}
                         key={idx}
                         type={type}
+                        userDescription={item.userDescription}
+                        disabled={item.disabled}
                     />
                 )}
             </div>

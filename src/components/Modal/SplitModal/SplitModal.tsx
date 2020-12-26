@@ -4,12 +4,12 @@ import '../AboutModal/AboutModalStyles.scss';
 
 interface ISplitModal {
     name: string;
-    count: string;
+    weight: number;
     closeAction: () => void;
     callBack?: (value: string) => void;
 }
 
-const SplitModal: React.FC<ISplitModal> = ({closeAction, name, callBack, count}) => {
+const SplitModal: React.FC<ISplitModal> = ({closeAction, name, callBack, weight}) => {
 
     const [value, setValue] = useState<string>('0');
 
@@ -42,7 +42,7 @@ const SplitModal: React.FC<ISplitModal> = ({closeAction, name, callBack, count})
         const coords = target.getBoundingClientRect();
         const out = document.getElementById('#res');
         if (out) {
-            const computeValue = (Number(target.value) / Number(count)) * 100;
+            const computeValue = (Number(target.value) / weight) * 100;
 
             out.style.left = computeValue + '%';
             if ((e.pageX - coords.x - 3) >= coords.width) {
@@ -72,6 +72,8 @@ const SplitModal: React.FC<ISplitModal> = ({closeAction, name, callBack, count})
         }
     }
 
+    const count = name === 'Сэндвич' || name === 'sandwich' ? 100 : 1;
+
     return (
         <div className='modal-back'>
             <div className={'range-modal-body range-enter-modal-body center-pos'}>
@@ -95,8 +97,8 @@ const SplitModal: React.FC<ISplitModal> = ({closeAction, name, callBack, count})
                             name={'range'}
                             id={'#range'}
                             min={0}
-                            max={count}
-                            step={1}
+                            max={weight}
+                            step={count}
                             onInput={moveOut}
                             onClick={moveOut}
                             onMouseDown={onMouseDown}

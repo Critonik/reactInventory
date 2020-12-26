@@ -7,15 +7,15 @@ export interface IBody {
     Glasses: IBodyCell;
     Tops: IBodyCell;
     Bracelets: IBodyCell;
-    gloves: IBodyCell;
+    Gloves: IBodyCell;
     Accessories: IBodyCell;
     Watches: IBodyCell;
     Legs: IBodyCell;
-    'Bags and Parachutes': IBodyCell;
+    BagsAndParachutes: IBodyCell;
     Shoes: IBodyCell;
-    'Body Armors': IBodyCell;
+    BodyArmors: IBodyCell;
     gun: IBodyCell;
-    pistol: IBodyCell;
+    pistols: IBodyCell;
     knife: IBodyCell;
     grenade: IBodyCell;
 }

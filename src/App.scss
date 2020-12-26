@@ -2,10 +2,7 @@
 @import "global-styles/media";
 
 .App {
-  background-image: url("./img/back.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-color: rgba(0, 0, 0, 0.9);
   width: 100%;
   height: 100%;
   position: relative;

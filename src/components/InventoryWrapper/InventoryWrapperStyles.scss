@@ -13,7 +13,7 @@
   align-items: center;
   background: rgba(121, 121, 121, 0.17);
   border-radius: 1.90452px;
-  min-height: 12px;
+  min-height: 22px;
   margin-bottom: 6px;
   position: relative;
 }
@@ -24,17 +24,22 @@
   justify-content: center;
   flex: 1 1 50%;
   background-color: transparent;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 5.0643px;
-  line-height: 6px;
+  font-size: 15.0643px;
+  line-height: 16px;
   text-align: center;
   color: rgba(255, 255, 255, 0.26);
   border: none;
   cursor: pointer;
+  height: 100%;
   &:focus {
     outline: none;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 
@@ -48,13 +53,13 @@
   .inventory-head-wrapper {
     padding: 1.9px 4.8px;
     border-radius: 2.90452px;
-    min-height: 18px;
+    min-height: 28px;
     margin-bottom: 9px;
   }
 
   .inventory-head-btn {
-    font-size: 7.0643px;
-    line-height: 9px;
+    font-size: 17.0643px;
+    line-height: 19px;
   }
 
   .active-btn {
@@ -67,13 +72,13 @@
   .inventory-head-wrapper {
     padding: 3px 6px;
     border-radius: 4px;
-    min-height: 25px;
+    min-height: 35px;
     margin-bottom: 12px;
   }
 
   .inventory-head-btn {
-    font-size: 10.6364px;
-    line-height: 13px;
+    font-size: 20.6364px;
+    line-height: 23px;
   }
 
   .active-btn {
@@ -85,13 +90,13 @@
   .inventory-head-wrapper {
     padding: 3px 6px;
     border-radius: 4px;
-    min-height: 29px;
+    min-height: 39px;
     margin-bottom: 14px;
   }
 
   .inventory-head-btn {
-    font-size: 11.6364px;
-    line-height: 15px;
+    font-size: 21.6364px;
+    line-height: 25px;
   }
 
   .active-btn {
@@ -103,13 +108,13 @@
   .inventory-head-wrapper {
     padding: 3.88px 7.77px;
     border-radius: 5.17588px;
-    min-height: 32px;
+    min-height: 42px;
     margin-bottom: 16px;
   }
 
   .inventory-head-btn {
-    font-size: 13.7631px;
-    line-height: 17px;
+    font-size: 23.7631px;
+    line-height: 27px;
   }
 
   .active-btn {

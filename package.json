@@ -21,7 +21,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "replace 'static/' '../' build/static/css/main.chunk.css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@types/react": "^16.9.49",
     "terser-webpack-plugin": "^5.0.3",
-    "optimize-css-assets-webpack-plugin": "^5.0.4"
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "replace": "^1.2.0"
   }
 }

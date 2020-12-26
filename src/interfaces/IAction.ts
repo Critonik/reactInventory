@@ -5,4 +5,3 @@ export interface IAction {
     type: EAction;
     data: ICellData | any;
 }
-

@@ -7,5 +7,8 @@ export interface ICellData {
     description: string;
     ownerType: number;
     owner: string;
+    img?: string;
     type?: string
+    disabled?: boolean;
+    userDescription?: string;
 }

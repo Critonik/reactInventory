@@ -1,6 +1,5 @@
 import { IStore } from '../interfaces/IStore';
 
-
 // const dataItem: ICellData[] = [
 //     {
 //         description: 'sim',
@@ -64,60 +63,59 @@ import { IStore } from '../interfaces/IStore';
 //     },
 // ];
 
-
 export const initialState: IStore = {
     body: {
         Bracelets: {
             description: 'Bracelets',
         },
         Ears: {
-            description: 'Ears'
+            description: 'Ears',
         },
         Glasses: {
-            description: 'Glasses'
+            description: 'Glasses',
         },
-        gloves: {
-            description: 'gloves'
+        Gloves: {
+            description: 'Gloves',
         },
         grenade: {
-            description: 'grenade'
+            description: 'grenade',
         },
         gun: {
-            description: 'gun'
+            description: 'gun',
         },
         Hats: {
-            description: 'Hats'
+            description: 'Hats',
         },
         Tops: {
-            description: 'Tops'
+            description: 'Tops',
         },
         knife: {
-            description: 'knife'
+            description: 'knife',
         },
         Masks: {
-            description: 'Masks'
+            description: 'Masks',
         },
         Legs: {
-            description: 'Legs'
+            description: 'Legs',
         },
-        'Bags and Parachutes': {
-            description: 'Bags and Parachutes'
+        BagsAndParachutes: {
+            description: 'BagsAndParachutes',
         },
-        pistol: {
-            description: 'pistol'
+        pistols: {
+            description: 'pistols',
         },
-        'Body Armors': {
-            description: 'Body Armors'
+        'BodyArmors': {
+            description: 'BodyArmors',
         },
         Shoes: {
-            description: 'Shoes'
+            description: 'Shoes',
         },
         Accessories: {
-            description: 'Accessories'
+            description: 'Accessories',
         },
         Watches: {
-            description: 'Watches'
-        }
+            description: 'Watches',
+        },
     },
     environment: {
         down: {
@@ -129,7 +127,7 @@ export const initialState: IStore = {
             data: [],
             title: '',
             className: 'up',
-        }
+        },
     },
     inventory: {
         inv: {
@@ -138,13 +136,15 @@ export const initialState: IStore = {
             weight: 0,
             cellLimit: 15,
             weightLimit: 10,
+            disabled: false
         },
         bag: {
             data: [],
-            title: 'Рюкзак',
+            title: 'Сумка',
             weight: 0,
             cellLimit: 25,
-            weightLimit: 15
+            weightLimit: 15,
+            disabled: false
         },
-    }
-}
+    },
+};

@@ -5,6 +5,9 @@ import { useStore } from '../../store/InventoryContext';
 import { IMenuData } from '../../interfaces/IMenuItems';
 import ContextMenu from '../ContextMenu/ContextMenu';
 import './EnvironmentColStyles.scss';
+import { weightConverter } from '../../store/weightConverter';
+import { names } from '../../store/ruNames';
+import { EAction } from '../../interfaces/EAction';
 
 interface IEnvironmentCell extends ICellData {
     where: string;
@@ -20,7 +23,8 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
         id,
         owner,
         ownerType,
-        where
+        where,
+        disabled
     } = props;
 
     const ref = React.createRef<HTMLDivElement>();
@@ -28,14 +32,38 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
     const imagePath = `./inventory/${description}.svg`;
 
     const [isOpen, setOpen] = useState<boolean>(false);
-    const [position, setPos] = useState<IPosition>({x: 0, y: 0});
+    const [position, setPos] = useState<IPosition>({ x: 0, y: 0 });
 
     const closeAction = () => setOpen(false);
 
     const contextStore = useStore();
 
+    const disableItem = () => {
+        const { createAction } = contextStore;
+        if (createAction) {
+            if (where === 'up') {
+                createAction({
+                    data: {
+                        id,
+                        disable: true
+                    },
+                    type: EAction.ADD_DISABLE_ENV_UP
+                })
+            }
+            if (where === 'down') {
+                createAction({
+                    data: {
+                        id,
+                        disable: true
+                    },
+                    type: EAction.ADD_DISABLE_ENV_DOWN
+                })
+            }
+        }
+    }
+
     const mouseMoveAction = (e: MouseEvent) => {
-        const {current} = ref;
+        const { current } = ref;
         if (current) {
             current.style.left = e.pageX + 'px';
             current.style.top = e.pageY + 'px';
@@ -44,7 +72,7 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
     }
 
     const onDrop = (e: MouseEvent) => {
-        const {current} = ref;
+        const { current } = ref;
         if (current && props) {
             current.style.position = 'static';
             current.style.left = 'initial';
@@ -53,7 +81,7 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
             if (dropPlace?.closest('.body-item')) {
                 document.removeEventListener('mousemove', mouseMoveAction);
                 current.classList.remove('moved-env-class');
-                current.classList.add('disable-class');
+                disableItem()
                 // @ts-ignore
                 invokeEvent('putItemOnBody', id) // eslint-disable-line
                 return;
@@ -61,7 +89,7 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
             if (dropPlace?.closest('.inventory-cell')) {
                 document.removeEventListener('mousemove', mouseMoveAction);
                 current.classList.remove('moved-env-class');
-                current.classList.add('disable-class');
+                disableItem()
                 if (dropPlace.closest('.inv')) {
                     // @ts-ignore
                     invokeEvent('moveToInventory', id) // eslint-disable-line
@@ -77,7 +105,7 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
             if (evnBody) {
                 document.removeEventListener('mousemove', mouseMoveAction);
                 current.classList.remove('moved-env-class');
-                current.classList.add('disable-class');
+                disableItem()
                 const checkUp = evnBody.classList.contains('up');
                 if (checkUp) {
                     // @ts-ignore
@@ -99,7 +127,7 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
     const dragItem = (e: React.MouseEvent) => {
         if (e.button === 2) return;
         const target = ((e.target as HTMLElement).closest('.draggable-env-item') as HTMLElement);
-        const {current} = ref;
+        const { current } = ref;
         if (target && current) {
             target.style.position = 'absolute';
             document.addEventListener('mousemove', mouseMoveAction);
@@ -122,53 +150,29 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
 
 
     const moveToAction = () => {
-        const {createAction, store: {environment: {down, up}}} = contextStore;
-        const {current} = ref;
-        if (createAction && props && current) {
-            if (where === down.className) {
-                current.classList.add('disable-class');
-                // @ts-ignore
-                invokeEvent('moveToInventory', id) // eslint-disable-line
-            }
-            if (where === up.className) {
-                current.classList.add('disable-class');
-                // @ts-ignore
-                invokeEvent('moveToInventory', id) // eslint-disable-line
-            }
+        const { current } = ref;
+        if (props && current) {
+            disableItem()
+            // @ts-ignore
+            invokeEvent('moveToInventory', id)
         }
     };
 
     const moveToBagAction = () => {
-        const {store: {environment: {down, up}}} = contextStore;
-        const {current} = ref;
+        const { current } = ref;
         if (props && current) {
-            if (where === down.className) {
-                current.classList.add('disable-class');
-                // @ts-ignore
-                invokeEvent('moveToBag', id) // eslint-disable-line
-            }
-            if (where === up.className) {
-                current.classList.add('disable-class');
-                // @ts-ignore
-                invokeEvent('moveToBag', id) // eslint-disable-line
-            }
+            disableItem()
+            // @ts-ignore
+            invokeEvent('moveToBag', id)
         }
     };
 
     const dropAction = () => {
-        const {store: {environment: {down, up}}} = contextStore;
-        const {current} = ref;
+        const { current } = ref;
         if (props && current) {
-            if (where === down.title) {
-                current.classList.add('disable-class');
-                // @ts-ignore
-                invokeEvent('dropItem', id) // eslint-disable-line
-            }
-            if (where === up.title) {
-                current.classList.add('disable-class');
-                // @ts-ignore
-                invokeEvent('dropItem', id) // eslint-disable-line
-            }
+            disableItem()
+            // @ts-ignore
+            invokeEvent('dropItem', id)
         }
     };
 
@@ -181,7 +185,7 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
             text: 'Переместить в инвентарь',
             action: moveToAction,
         }, {
-            text: 'Переместить в рюкзак',
+            text: 'Переместить в сумку',
             action: moveToBagAction,
         }
     ];
@@ -189,7 +193,7 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
     return (
         <div className="env-item-body">
             <div
-                className="draggable-env-item draggable"
+                className={`draggable-env-item draggable ${disabled && 'disable-class'}`}
                 data-item={item}
                 data-state={state}
                 data-weight={weight}
@@ -204,11 +208,11 @@ const EnvironmentCell: React.FC<IEnvironmentCell> = (props) => {
             >
                 <div className="item-inner-wrapper">
                     <img src={imagePath} className="item-icon" alt={`${description}`}/>
-                    <div className="item-name">{description}</div>
+                    <div
+                        className="item-name">{names.hasOwnProperty(description) ? names[description] : description}</div>
                 </div>
                 <div className="item-inner-wrapper">
-                    {state ? <div className="item-count">{state} шт</div> : null}
-                    {weight ? <div className="item-count">{weight} кг</div> : null}
+                    {weight !== undefined ? <div className="item-count">{weightConverter(weight)}</div> : null}
                 </div>
             </div>
             {isOpen

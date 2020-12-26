@@ -7,6 +7,7 @@ export interface IBodyCell {
     description?: string;
     ownerType?: number;
     owner?: string;
+    disabled?: boolean;
 }
 
 

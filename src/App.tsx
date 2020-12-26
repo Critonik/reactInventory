@@ -8,19 +8,19 @@ const App: React.FC = () => {
 
     const closeInv = () => {
         // @ts-ignore
-        invokeEvent("closeInventory");
+        invokeEvent('closeInventory');
     }
     const escapeDetect = (e: KeyboardEvent) => {
         if (e.key === 'Escape' || e.key === 'Esc') {
             // @ts-ignore
-            invokeEvent("closeInventory");
+            invokeEvent('closeInventory');
         }
     }
 
     useEffect(() => {
         document.addEventListener('keydown', escapeDetect);
         return () => document.removeEventListener('keydown', escapeDetect);
-    },[])
+    }, [])
 
     return (
         <StoreProvider>

@@ -4,8 +4,13 @@ import { IStore } from '../interfaces/IStore';
 import { reducer } from './reducer';
 import { IAction } from '../interfaces/IAction';
 import { ICellData } from '../interfaces/ICellData';
-import { clothesTypes, itemTypes } from './itemTypes';
+import { bags, clothesTypes, itemTypes } from './itemTypes';
 
+
+export interface IUserDescription {
+    userDescription?: string;
+    id: number;
+}
 
 interface IExport {
     store: IStore;
@@ -13,7 +18,7 @@ interface IExport {
 }
 
 
-const InventoryContext = React.createContext<IExport>({store: initialState});
+const InventoryContext = React.createContext<IExport>({ store: initialState });
 
 export const useStore = () => {
     return useContext(InventoryContext)
@@ -26,21 +31,53 @@ interface IParsedString {
     Description: string;
 }
 
-const convertData = (data: ICellData | string) => {
+export interface IDisableItem {
+    id: string;
+    disable: boolean;
+}
+
+type TPayload = ICellData | string | IUserDescription | boolean | IDisableItem;
+
+const convertData = (data: TPayload) => {
+    if (typeof data === 'boolean') {
+        return data;
+    }
+
     if (typeof data === 'string') {
         return data;
     }
-    const { item, description } = data;
+
+    if ((data as IDisableItem).disable) {
+        return  data;
+    }
+
+    if ((data as IUserDescription).userDescription) {
+        return  data;
+    }
+
+    const { item, description } = data as ICellData;
+
+    if (item === 17 && description) {
+        const newDesc = JSON.parse(description);
+        if ('description' in data) {
+            data.description = newDesc.Hash;
+        }
+        return data;
+    }
+
     if (item === 20 && description) {
         const parsedData: IParsedString = JSON.parse(description);
         const newDesc = clothesTypes[parsedData.Slot];
-        return {...data, description: newDesc};
+        if (parsedData.Slot === 5) {
+            return { ...data, description: newDesc, img: bags[parsedData.Description] };
+        }
+        return { ...data, description: newDesc };
     }
     const newDesc = itemTypes[item];
-    return {...data, description: newDesc};
+    return { ...data, description: newDesc };
 }
 
-export const StoreProvider: React.FC = ({children}) => {
+export const StoreProvider: React.FC = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const createAction = (arg: IAction) => {

@@ -1,186 +1,207 @@
 @import "../../global-styles/media";
 
 .body-item {
-  width: 30.95px;
-  height: 30.95px;
-  background-color: transparent;
-  border-radius: 1.90452px;
-  background-size: 80%;
-  background-repeat: no-repeat;
-  background-position: center;
-  &[data-image='Hats'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Hats.svg");
-    grid-column-start: 3;
-    grid-column-end: 3;
-  }
-  &[data-image='Ears'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Ears.svg");
+    width: 30.95px;
+    height: 30.95px;
+    background-color: transparent;
+    border-radius: 1.90452px;
+    background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    grid-column-start: 2;
-    grid-column-end: 2;
-  }
-  &[data-image='Masks'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Masks.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 3;
-    grid-column-end: 3;
-  }
-  &[data-image='Glasses'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Glasses.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 4;
-    grid-column-end: 4;
-  }
-  &[data-image='Tops'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Tops.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 3;
-    grid-column-end: 3;
-  }
-  &[data-image='Accessories'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Accessories.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 4;
-    grid-column-end: 4;
-  }
-  &[data-image='Watches'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Watches.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 4;
-    grid-column-end: 4;
-  }
-  &[data-image='Legs'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Legs.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 3;
-    grid-column-end: 3;
-  }
-  &[data-image='gloves'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/glove.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  &[data-image='Bracelets'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Bracelets.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  &[data-image='Bags and Parachutes'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Bags and Parachutes.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 2;
-    grid-column-end: 2;
-  }
-  &[data-image='Shoes'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Shoes.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 3;
-    grid-column-end: 3;
-  }
-  &[data-image='Body Armors'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/Body Armors.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 4;
-    grid-column-end: 4;
-  }
-  &[data-image='gun'] {
-    width: 93%;
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/carabinBody.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 2;
-    grid-column-end: 5;
-  }
-  &[data-image='pistol'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/pistolBody.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 2;
-    grid-column-end: 2;
-  }
-  &[data-image='knife'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/knifeIcon.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 3;
-    grid-column-end: 3;
-    background-size: contain;
-  }
-  &[data-image='grenade'] {
-    background-color: rgba(121, 121, 121, 0.17);
-    background-image: url("../../img/grenadeBody.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    grid-column-start: 4;
-    grid-column-end: 4;
-    background-size: contain;
-  }
+
+    &[data-image='Hats'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Hats.svg");
+        grid-column-start: 3;
+        grid-column-end: 3;
+    }
+
+    &[data-image='Ears'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Ears.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 2;
+        grid-column-end: 2;
+    }
+
+    &[data-image='Masks'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Masks.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 3;
+        grid-column-end: 3;
+    }
+
+    &[data-image='Glasses'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Glasses.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 4;
+        grid-column-end: 4;
+    }
+
+    &[data-image='Tops'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Tops.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 3;
+        grid-column-end: 3;
+    }
+
+    &[data-image='Accessories'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Accessories.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 4;
+        grid-column-end: 4;
+    }
+
+    &[data-image='Watches'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Watches.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 4;
+        grid-column-end: 4;
+    }
+
+    &[data-image='Legs'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Legs.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 3;
+        grid-column-end: 3;
+    }
+
+    &[data-image='Gloves'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Gloves.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    &[data-image='Bracelets'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Bracelets.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    &[data-image='Parachute'],
+    &[data-image='bag'],
+    &[data-image='BagsAndParachutes'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/BagsAndParachutes.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 2;
+        grid-column-end: 2;
+    }
+    &[data-image='Shoes'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/Shoes.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 3;
+        grid-column-end: 3;
+    }
+
+    &[data-image='santa'],
+    &[data-image='neon'],
+    &[data-image='tron'],
+    &[data-image='wetsuit'],
+    &[data-image='BodyArmors'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/BodyArmors.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 4;
+        grid-column-end: 4;
+    }
+
+    &[data-image='gun'] {
+        width: 93%;
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/carabinBody.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 2;
+        grid-column-end: 5;
+    }
+
+    &[data-image='pistols'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/pistolBody.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 2;
+        grid-column-end: 2;
+    }
+
+    &[data-image='knife'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/knifeIcon.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 3;
+        grid-column-end: 3;
+        background-size: contain;
+    }
+
+    &[data-image='grenade'] {
+        background-color: rgba(121, 121, 121, 0.45);
+        background-image: url("../../img/grenadeBody.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        grid-column-start: 4;
+        grid-column-end: 4;
+        background-size: contain;
+    }
 }
 
 .contain {
-  &[data-image] {
-    background-size: contain;
-  }
+    &[data-image] {
+        background-size: contain;
+    }
 }
 
 @media screen and (min-width: $desktop) {
-  .body-item {
-    width: 40.95px;
-    height: 40.95px;
-    border-radius: 2.90452px;
-    background-size: 80%;
-  }
+    .body-item {
+        width: 40.95px;
+        height: 40.95px;
+        border-radius: 2.90452px;
+        background-size: 80%;
+    }
 }
 
 @media screen and (min-width: $ultra) {
-  .body-item {
-    width: 65px;
-    height: 65px;
-    border-radius: 4px;
-    background-size: 80%;
-  }
+    .body-item {
+        width: 65px;
+        height: 65px;
+        border-radius: 4px;
+        background-size: 80%;
+    }
 }
 
 @media screen and (min-width: $ultraWide) {
-  .body-item {
-    width: 75px;
-    height: 75px;
-    border-radius: 4px;
-    background-size: 80%;
-    cursor: pointer;
-  }
+    .body-item {
+        width: 75px;
+        height: 75px;
+        border-radius: 4px;
+        background-size: 80%;
+        cursor: pointer;
+    }
 }
 
 @media screen and (min-width: $max) {
-  .body-item {
-    width: 85px;
-    height: 85px;
-    border-radius: 5.17588px;
-  }
+    .body-item {
+        width: 85px;
+        height: 85px;
+        border-radius: 5.17588px;
+    }
 }
